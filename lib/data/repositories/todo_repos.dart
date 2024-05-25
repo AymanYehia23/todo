@@ -1,7 +1,7 @@
 import '../models/todo.dart';
 
 abstract class GetTodosRepo {
-  Future<List<Todo>> getAllTodos();
+  Future<dynamic> getTodos({int skip});
 }
 
 abstract class AddTodoRepo {
