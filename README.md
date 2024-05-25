@@ -104,3 +104,4 @@ To get started with the Todo app, you'll need to have Flutter installed on your 
   - flutter_riverpod: For state management.
   - flutter_screenutil: For UI responsiveness.
   - dio: For HTTP networking.
+  - flutter_spinkit: For loading indicators.
