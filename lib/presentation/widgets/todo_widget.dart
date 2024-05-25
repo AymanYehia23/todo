@@ -21,7 +21,7 @@ class TodoWidget extends ConsumerWidget {
     void updateTask() async {
       String msg =
           await ref.read(todosProvider.notifier).updateTodo(task, index);
-      if (task.isLocal && context.mounted) {
+      if (task.isLocal! && context.mounted) {
         showSnackBar(
           context,
           msg: 'Updated Local Task',
@@ -37,7 +37,7 @@ class TodoWidget extends ConsumerWidget {
             todo: task,
             index: index,
           );
-      if (task.isLocal && context.mounted) {
+      if (task.isLocal! && context.mounted) {
         showSnackBar(
           context,
           msg: 'Deleted Local Task',
@@ -61,12 +61,13 @@ class TodoWidget extends ConsumerWidget {
         ),
       ),
       title: Text(
-        task.todo,
+        task.todo!,
         style: TextStyle(
           color: Colors.black,
           fontSize: 16.sp,
-          decoration:
-              task.completed ? TextDecoration.lineThrough : TextDecoration.none,
+          decoration: task.completed!
+              ? TextDecoration.lineThrough
+              : TextDecoration.none,
         ),
       ),
       value: task.completed,

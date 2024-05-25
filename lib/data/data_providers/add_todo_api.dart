@@ -9,7 +9,7 @@ class AddTodoApi implements AddTodoRepo {
   Future<Todo> addTodo({required Todo newTodo}) async {
     final res = await HttpService.postRequest(
       endPoint: Strings.addTodo,
-      data: newTodo.toMap(),
+      data: newTodo.toJson(),
     );
     return Todo.fromJson(res.data);
   }

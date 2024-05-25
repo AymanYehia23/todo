@@ -1,19 +1,20 @@
 class Todo {
   Todo({
-    required this.id,
-    required this.todo,
-    required this.completed,
+    this.id,
+    this.todo,
+    this.completed,
   });
-  int id = 0;
-  String todo = '';
-  bool completed = false;
-  bool isLocal = false;
+  int? id;
+  String? todo;
+  bool? completed;
+  bool? isLocal = false;
+
   Todo.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     todo = json['todo'];
     completed = json['completed'];
   }
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'todo': todo,
       'completed': completed,

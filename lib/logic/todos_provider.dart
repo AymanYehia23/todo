@@ -64,16 +64,16 @@ class TodosNotifier extends StateNotifier<List<Todo>> {
 
   Future<String> updateTodo(Todo todo, int index) async {
     String msg = Strings.succeeded;
-    state[index].completed = !todo.completed;
+    state[index].completed = !todo.completed!;
     state = [...state];
-    if (!todo.isLocal) {
+    if (!todo.isLocal!) {
       try {
         await _updateTodoRepo.updateTodo(
-          id: todo.id,
-          completed: !todo.completed,
+          id: todo.id!,
+          completed: !todo.completed!,
         );
       } on DioException catch (error) {
-        state[index].completed = !todo.completed;
+        state[index].completed = !todo.completed!;
         state = [...state];
         if (error.response == null) {
           msg = Strings.noInternetErrorMessage;
@@ -93,9 +93,9 @@ class TodosNotifier extends StateNotifier<List<Todo>> {
     String msg = Strings.succeeded;
     state.removeAt(index);
     state = [...state];
-    if (!todo.isLocal) {
+    if (!todo.isLocal!) {
       try {
-        await _deleteTodoRepo.deleteTodo(id: todo.id);
+        await _deleteTodoRepo.deleteTodo(id: todo.id!);
       } on DioException catch (error) {
         state.insert(index, todo);
         state = [...state];
@@ -117,7 +117,7 @@ class TodosNotifier extends StateNotifier<List<Todo>> {
 final todosProvider = StateNotifierProvider<TodosNotifier, List<Todo>>(
   (ref) {
     return TodosNotifier(
-      (),GetTodosApi
+      GetTodosApi(),
       AddTodoApi(),
       UpdateTodoApi(),
       DeleteTodoApi(),
