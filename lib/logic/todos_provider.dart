@@ -21,18 +21,26 @@ class TodosNotifier extends StateNotifier<List<Todo>> {
   final UpdateTodoRepo _updateTodoRepo;
   final DeleteTodoRepo _deleteTodoRepo;
 
-  Future<String> getAllTodos() async {
+  int _totalTodos = 1000;
+
+  Future<String> getTodos() async {
     String msg = Strings.succeeded;
-    try {
-      state = await _getTodosRepo.getAllTodos();
-    } on DioException catch (error) {
-      if (error.response == null) {
-        msg = Strings.noInternetErrorMessage;
-      } else {
-        if (error.response != null) {
-          msg = error.response!.data.toString();
+    if (state.length < _totalTodos) {
+      try {
+        final response = await _getTodosRepo.getTodos(skip: state.length);
+        response.data['todos'].forEach((todo) {
+          state.add(Todo.fromJson(todo));
+        });
+        _totalTodos = response.data["total"];
+      } on DioException catch (error) {
+        if (error.response == null) {
+          msg = Strings.noInternetErrorMessage;
         } else {
-          msg = Strings.defaultErrorMessage;
+          if (error.response != null) {
+            msg = error.response!.data.toString();
+          } else {
+            msg = Strings.defaultErrorMessage;
+          }
         }
       }
     }
@@ -48,6 +56,7 @@ class TodosNotifier extends StateNotifier<List<Todo>> {
       //Mark the Todo as local
       res.isLocal = true;
       state = [res, ...state];
+      _totalTodos++;
     } on DioException catch (error) {
       if (error.response == null) {
         msg = Strings.noInternetErrorMessage;
@@ -93,12 +102,14 @@ class TodosNotifier extends StateNotifier<List<Todo>> {
     String msg = Strings.succeeded;
     state.removeAt(index);
     state = [...state];
+    _totalTodos--;
     if (!todo.isLocal!) {
       try {
         await _deleteTodoRepo.deleteTodo(id: todo.id!);
       } on DioException catch (error) {
         state.insert(index, todo);
         state = [...state];
+        _totalTodos++;
         if (error.response == null) {
           msg = Strings.noInternetErrorMessage;
         } else {

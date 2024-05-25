@@ -7,35 +7,37 @@ class EmptyTasksListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 40.w),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            'assets/images/empty.png',
-            width: 400.w,
-            height: 300.h,
-          ),
-          Text(
-            Strings.emptyTasksListTitle,
-            style: TextStyle(
-              fontSize: 20.sp,
-              fontWeight: FontWeight.bold,
+    return Center(
+      child: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 40.w),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/empty.png',
+              width: 400.w,
+              height: 300.h,
             ),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            Strings.emptyTasksListSubTitle,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 18.sp,
-              color: Colors.grey.shade600,
+            Text(
+              Strings.emptyTasksListTitle,
+              style: TextStyle(
+                fontSize: 20.sp,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-        ],
+            SizedBox(
+              height: 10.h,
+            ),
+            Text(
+              Strings.emptyTasksListSubTitle,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18.sp,
+                color: Colors.grey.shade600,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
