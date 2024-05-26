@@ -54,31 +54,31 @@ To get started with the Todo app, you'll need to have Flutter installed on your 
     todo/
     ├── lib/
     │   ├── main.dart
-    |   ├── core
+    |   ├── core/
     |   |   └── strings.dart
-    |   ├── data
-    |   |   └── models
+    |   ├── data/
+    |   |   └── models/
     |   |       └── todo.dart
-    |   |   └── repositories
+    |   |   └── repositories/
     |   |       └── todo_repos.dart
-    |   |   └── http
+    |   |   └── http/
     |   |       └── http_service.dart
-    |   |   └── data_providers
+    |   |   └── data_providers/
     |   |       └── add_todo_api.dart
     |   |       └── delete_todo_api.dart
     |   |       └── get_todos_api.dart
     |   |       └── update_todo_api.dart
-    |   ├── logic
+    |   ├── logic/
     |   |   └── todos_provider.dart
-    │   ├── presentation
-    |   |   └── screens
+    │   ├── presentation/
+    |   |   └── screens/
     |   |       └── home_screen.dart
-    |   |   └── widgets
+    |   |   └── widgets/
     |   |       └── add_task_widget.dart
     |   |       └── empty_tasks_list_widget.dart
     |   |       └── snack_bar_widget.dart
     |   |       └── todo_widget.dart
-    └── assets
+    └── assets/
     └── pubspec.yaml
     
 **Explanation**
