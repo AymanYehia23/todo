@@ -31,7 +31,7 @@ To get started with the Todo app, you'll need to have Flutter installed on your 
 
 1. **Clone the repository**:
    ```sh
-   git clone https://github.com/your-username/todo-app.git
+   git clone https://github.com/AymanYehia23/todo.git
    cd todo-app
 2. **Install dependencies**:
     ```sh
